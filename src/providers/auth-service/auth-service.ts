@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 export class User {
   name: string;
   email: string;
+  password: string;
  
   constructor(name: string, email: string) {
     this.name = name;
@@ -22,8 +22,8 @@ export class User {
 export class AuthServiceProvider {
 
   currentUser: User;
-
-  constructor(public http: HttpClient) {
+  // public http: HttpClient
+  constructor() {
     console.log('Hello AuthServiceProvider Provider');
   }
 
@@ -33,7 +33,7 @@ export class AuthServiceProvider {
     } else {
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
-        let access = (credentials.password === "pass" && credentials.email === "email");
+        let access = (credentials.password === "pass" && credentials.email === "test@test.com");
         this.currentUser = new User('Simon', 'saimon@devdactic.com');
         observer.next(access);
         observer.complete();
@@ -47,6 +47,9 @@ export class AuthServiceProvider {
     } else {
       // At this point store the credentials to your backend!
       return Observable.create(observer => {
+        this.currentUser.email = credentials.email;
+        this.currentUser.name = 'lucas';
+        this.currentUser.password = credentials.password;
         observer.next(true);
         observer.complete();
       });
