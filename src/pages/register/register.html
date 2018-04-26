@@ -14,25 +14,40 @@
 
 
 <ion-content class="login-content" padding>
-  <div class="login-box">
-    <form (ngSubmit)="register()" #registerForm="ngForm">
-      <ion-row>
-        <ion-col>
-          <ion-list inset >
-              <ion-item>
-                <ion-input type="email" placeholder="Correo" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input type="password" placeholder="contraseña" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
-              </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Registrarse</button>
-        </ion-col>
-      </ion-row>
-    </form>
+  <div class="form">
+    <div class="tab-content">
+      <div id="signup">
+        <h1>Registrese</h1>
+        <form (ngSubmit)="register()" #registerForm="ngForm">
+          <!-- <div class="top-row">
+            <div class="field-wrap">
+              <input type="text" placeholder="Nombre" autocomplete="off" />
+            </div>
+            <div class="field-wrap">
+              <input type="text" placeholder="Appellido" autocomplete="off" />
+            </div>
+          </div> -->
+          <ion-row>
+            <ion-col col-12  col-sm>
+              <input type="text" placeholder="Nombre" autocomplete="off" />
+            </ion-col>
+            <ion-col col-12  col-sm>
+              <input type="text" placeholder="Appellido" autocomplete="off" />
+            </ion-col>
+          </ion-row>
+
+          <div class="field-wrap" col-12>
+            <input type="email" placeholder="E-Mail" name="email" [(ngModel)]="registerCredentials.email" email required/>
+          </div>
+          <div class="field-wrap" col-12>
+            <input type="password" placeholder="Contraseña" name="password" [(ngModel)]="registerCredentials.password" required/>
+          </div>
+          <button type="submit" class="button button-block">Empezar!!</button>
+        </form>
+      </div>
+      <div id="login"></div>
+    </div>
+    <!-- tab-content -->
   </div>
+  <!-- /form -->
 </ion-content>

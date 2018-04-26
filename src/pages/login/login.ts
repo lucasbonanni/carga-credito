@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, AlertController, LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LoginPage page.
@@ -39,10 +38,9 @@ export class LoginPage {
     this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(allowed => {
       if (allowed) {        
-        this.nav.setRoot(HomePage);
-        // this.nav.push('HomePage');
+        this.nav.push('HomePage');
       } else {
-        this.showError("No tiene acceso");
+        this.showError("Verifique sus credenciales");
       }
     },
       error => {
@@ -62,7 +60,7 @@ export class LoginPage {
     this.loading.dismiss();
  
     let alert = this.alertCtrl.create({
-      title: 'Falló',
+      title: 'Se produjo un error',
       subTitle: text,
       buttons: ['OK']
     });

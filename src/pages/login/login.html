@@ -4,40 +4,29 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Inicie session!</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding class="login-content">
-  <div class="login-box">
-    <form (ngSubmit)="login()" #registerForm="ngForm">
-      <ion-row>
-        <ion-col>
-          <ion-list inset >
-            <ion-item>
-              <ion-item>
-                <!-- <ion-label floating>Correo</ion-label> -->
-                <ion-input type="email" placeholder="correo" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
-              </ion-item>
-              <ion-item>
-                  <!-- <ion-label floating>Contraseña</ion-label> -->
-                  <ion-input type="password" placeholder="contraseña" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
-              </ion-item>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Ingresar</button>
-          <button ion-button class="register-btn" block clear (click)="createAccount()">Registrarse</button>
-        </ion-col>
-      </ion-row>
-    </form>
+  <div class="form">
+    <div class="tab-content">
+      <div id="signup">
+        <h1>Bienvenido!</h1>
+        <form (ngSubmit)="login()" #loginForm="ngForm">
+          <div class="field-wrap">
+            <input type="email" id="email" placeholder="E-mail" name="email" [(ngModel)]="registerCredentials.email" email required/>
+          </div>
+          <div class="field-wrap">
+            <input type="password" id="password" placeholder="Contraseña" name="password" [(ngModel)]="registerCredentials.password" required/>
+          </div>
+          <p class="forgot">
+            <a href="#">¿olvidó su contraseña?</a>
+          </p>
+          <button ion-button full large class="button button-block" type="submit" [disabled]="!loginForm.form.valid">Log In</button>
+        </form>
+        <button ion-button full large (click)="createAccount()">registrarse!</button>
+      </div>
+      <div id="login">
+      </div>
+    </div>
+    <!-- tab-content -->
   </div>
+  <!-- /form -->
 </ion-content>

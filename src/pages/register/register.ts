@@ -41,7 +41,8 @@ export class RegisterPage {
     },
       error => {
         this.showPopup("Error", error);
-      });
+      }
+    );
   }
 
   showPopup(title, text) {

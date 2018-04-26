@@ -5,7 +5,7 @@ export class User {
   name: string;
   email: string;
   password: string;
- 
+
   constructor(name: string, email: string) {
     this.name = name;
     this.email = email;
@@ -22,20 +22,25 @@ export class User {
 export class AuthServiceProvider {
 
   currentUser: User;
+  access: boolean;
   // public http: HttpClient
   constructor() {
+    this.access = false;
     console.log('Hello AuthServiceProvider Provider');
   }
 
   public login(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
-    } else {
+    }
+    else {
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
-        let access = (credentials.password === "pass" && credentials.email === "test@test.com");
-        this.currentUser = new User('Simon', 'saimon@devdactic.com');
-        observer.next(access);
+        if (credentials.password === "pass" && credentials.email === "test@test.com") {
+          this.access = true;
+        }
+        this.currentUser = new User('Lucas Bonanni', 'test@test.com');
+        observer.next(this.access);
         observer.complete();
       });
     }
@@ -56,10 +61,10 @@ export class AuthServiceProvider {
     }
   }
 
-  public getUserInfo() : User {
+  public getUserInfo(): User {
     return this.currentUser;
   }
- 
+
   public logout() {
     return Observable.create(observer => {
       this.currentUser = null;
