@@ -5,7 +5,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 import { MyApp } from './app.component';
 
 @NgModule({
@@ -24,8 +24,8 @@ import { MyApp } from './app.component';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
-    
+    AuthServiceProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}

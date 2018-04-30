@@ -22,4 +22,8 @@ export class HomePage {
     });
   }
 
+  public pantallaLector(){
+    this.nav.push('CargaCreditoPage');
+  }
+
 }
