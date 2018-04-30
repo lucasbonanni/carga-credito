@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, AlertController, LoadingController, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, Loading, AlertController, LoadingController, ActionSheetController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
@@ -18,7 +18,7 @@ export class LoginPage {
 
   loading: Loading;
   registerCredentials = { email: '', password: '' };
-  private actionSheetCtrl: ActionSheetController;
+  private : ActionSheetController;
   constructor(
     private nav: NavController, 
     private auth: AuthServiceProvider, 

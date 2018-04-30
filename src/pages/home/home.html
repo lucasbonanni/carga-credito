@@ -1,15 +1,25 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Bienvenido {{username}}!</ion-title>
     <ion-buttons end>
         <button ion-button (click)="logout()">
-          <ion-icon name="log-out"></ion-icon>
+          Cerrar Session <ion-icon name="md-exit"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="home" padding>
-    <h3>Bienvenido {{username}}!</h3>
-    Tu Email es: {{email}}
+    <!-- <h3>Bienvenido {{username}}!</h3>
+    Tu Email es: {{email}} -->
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button full large>Tomar crédito</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button full large>Estado de cuenta</button>
+      </ion-col>
+    </ion-row>
 </ion-content>
