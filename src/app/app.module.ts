@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 import { MyApp } from './app.component';
+import { CreditProvider } from '../providers/credit/credit';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MyApp } from './app.component';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    BarcodeScanner
+    BarcodeScanner,
+    CreditProvider
   ]
 })
 export class AppModule {}
