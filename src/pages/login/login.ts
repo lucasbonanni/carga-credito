@@ -36,16 +36,13 @@ export class LoginPage {
 
   public login() {
     this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {
+    this.auth.signInWithEmail(this.registerCredentials).then(allowed => {
+      console.log(allowed);
         this.nav.setRoot('HomePage');
-      } else {
-        this.showError("Verifique sus credenciales");
-      }
-    },
-      error => {
-        this.showError(error);
-      });
+    }).catch(error=>{
+      alert(error);
+      this.loading.dismiss();
+    });
   }
 
   showLoading() {
@@ -67,4 +64,11 @@ export class LoginPage {
     alert.present();
   }
 
+  loginWithGoogle(){
+    this.auth.signInWithGoogle().then(() =>{
+      this.nav.setRoot('HomePage');
+    }).catch(error =>{
+      alert(error);
+    })
+  }
 }
