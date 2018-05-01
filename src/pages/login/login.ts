@@ -64,11 +64,19 @@ export class LoginPage {
     alert.present();
   }
 
+  loginWithGithub(){
+    this.auth.signInWithGithub().then(() =>{
+      this.nav.setRoot('HomePage');
+    }).catch(error =>{
+      alert(error);
+    });;
+  }
+
   loginWithGoogle(){
     this.auth.signInWithGoogle().then(() =>{
       this.nav.setRoot('HomePage');
     }).catch(error =>{
       alert(error);
-    })
+    });
   }
 }

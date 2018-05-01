@@ -54,6 +54,11 @@ export class AuthServiceProvider {
 		return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
 }
 
+signInWithGithub() {
+  console.log('Sign in with github');
+  return this.oauthSignIn(new firebase.auth.GithubAuthProvider());
+}
+
 private oauthSignIn(provider: AuthProvider) {
 	if (!(<any>window).cordova) {
 		return this.afAuth.auth.signInWithPopup(provider);
