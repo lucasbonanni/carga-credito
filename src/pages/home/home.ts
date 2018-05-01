@@ -22,8 +22,12 @@ export class HomePage {
     });
   }
 
-  public pantallaLector(){
+  public chargeCredit(){
     this.nav.push('CargaCreditoPage');
+  }
+
+  public accountStatus(){
+    this.nav.push('CuentaPage');
   }
 
 }

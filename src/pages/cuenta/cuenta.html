@@ -7,12 +7,33 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>cuenta</ion-title>
+    <ion-title>Su cuenta</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-
+  <ion-card>
+    <ion-card-header>
+      Movimientos de la cuenta
+    </ion-card-header>
+    <div *ngIf="this.credit.length > 0">
+      <ion-card-content>
+        <ion-item-group>
+          <ion-item *ngFor="let tr of credit">Fecha: {{ tr.fecha }} - Monto: {{ tr.amount }}</ion-item>
+        </ion-item-group>
+      </ion-card-content>
+      <ion-row>
+        <ion-col>
+          TOTAL DE LA CUENTA - {{amount}}
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="!this.credit || this.credit.length === 0">
+      <ion-card-content text-center>
+        No se encuentran movimientos para mostrar
+      </ion-card-content>
+    </div>
+    
+  </ion-card>
 </ion-content>

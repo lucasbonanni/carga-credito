@@ -21,6 +21,13 @@
     // background-color: indigo;
     background: linear-gradient(to bottom right,rgba(255,125,25,0.3) , white);
 }
+.fixed-content{
+  background-image: url(../assets/imgs/coin-stack.png);
+  background-repeat: repeat;
+  background-size:3%;
+  background-color: #56CA96;
+}
+
 
 #custom-overlay {
     position: fixed;

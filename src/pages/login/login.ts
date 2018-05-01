@@ -37,8 +37,8 @@ export class LoginPage {
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {        
-        this.nav.push('HomePage');
+      if (allowed) {
+        this.nav.setRoot('HomePage');
       } else {
         this.showError("Verifique sus credenciales");
       }
