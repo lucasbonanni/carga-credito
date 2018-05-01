@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Alert } from 'ionic-angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import { CreditProvider } from '../../providers/credit/credit';
 
 /**
  * Generated class for the CargaCreditoPage page.
@@ -14,13 +15,15 @@ import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-sca
   selector: 'page-carga-credito',
   templateUrl: 'carga-credito.html',
 })
-export class CargaCreditoPage implements OnInit{
+export class CargaCreditoPage implements OnInit {
   private options: BarcodeScannerOptions;
   private text: string;
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private barcodeScanner: BarcodeScanner) {
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private barcodeScanner: BarcodeScanner,
+    private creditSrv: CreditProvider,
+    private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -30,10 +33,41 @@ export class CargaCreditoPage implements OnInit{
   ngOnInit(): void {
     this.barcodeScanner.scan().then(result => {
       this.text = result.text;
+      const creditResult = this.creditSrv.addCredit(result.text);
+      let alert :Alert;
+      if (creditResult.amount === 0) {
+        alert = this.alertCtrl.create({
+          title: 'Advertencia!',
+          subTitle: creditResult.message,
+          buttons: [
+            {
+              text: 'Aceptar',
+              role: 'cancel',
+              handler: () => {
+                this.navCtrl.push('HomePage');
+              }
+            }]
+        });
+      }
+      else {
+        alert = this.alertCtrl.create({
+          title: 'Notificación!',
+          subTitle: creditResult.message,
+          buttons: [
+            {
+              text: 'Aceptar',
+              role: 'cancel',
+              handler: () => {
+                this.navCtrl.push('HomePage');
+              }
+            }]
+        });
+      }
+      alert.present();
     })
-    .catch(error =>{
-      alert('error message:' + error);
-    });
+      .catch(error => {
+        alert('error message:' + error);
+      });
   }
 
 }
