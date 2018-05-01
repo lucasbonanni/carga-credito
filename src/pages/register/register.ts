@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+// import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the RegisterPage page.
@@ -21,7 +21,7 @@ export class RegisterPage {
 
   constructor(
     private nav: NavController, 
-    private auth: AuthServiceProvider, 
+    // private auth: AuthServiceProvider, 
     private alertCtrl: AlertController) {
       this.registerCredentials = { email: '', password: '' };
   }

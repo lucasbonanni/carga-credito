@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Alert } from 'ionic-angular';
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { CreditProvider } from '../../providers/credit/credit';
 
 /**
@@ -16,8 +16,7 @@ import { CreditProvider } from '../../providers/credit/credit';
   templateUrl: 'carga-credito.html',
 })
 export class CargaCreditoPage implements OnInit {
-  private options: BarcodeScannerOptions;
-  private text: string;
+  public text: string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
