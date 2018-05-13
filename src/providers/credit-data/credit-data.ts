@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { CreditModel } from '../credit/credit';
 
 /*
   Generated class for the CreditDataProvider provider.
@@ -10,9 +11,17 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @Injectable()
 export class CreditDataProvider {
 
+  creditRef: AngularFireList<CreditModel>;
   constructor(private db: AngularFireDatabase) {
-    // this.votesRef = this.db.list<voteModel>('votacion');
-    // this.votes = this.votesRef.valueChanges();
+    this.creditRef = this.db.list<CreditModel>('votacion');
+  }
+
+  public addCredit(credit: CreditModel) {
+    this.creditRef.push(credit);
+  }
+
+  public getCredit(displayName: string) {
+    return this.creditRef.stateChanges();
   }
 
 }
