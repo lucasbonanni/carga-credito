@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { BrowserTab } from '@ionic-native/browser-tab';
@@ -15,6 +16,7 @@ import { CreditProvider } from '../providers/credit/credit';
 import { firebaseConfig } from '../enviroments/enviroment';
 import { AboutPage } from '../pages/about/about';
 import { TabsPage } from '../pages/tabs/tabs';
+import { CreditDataProvider } from '../providers/credit-data/credit-data';
 
 @NgModule({
   declarations: [
@@ -38,10 +40,12 @@ import { TabsPage } from '../pages/tabs/tabs';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AngularFireDatabase,
     AuthServiceProvider,
     BarcodeScanner,
     CreditProvider,
-    BrowserTab
+    BrowserTab,
+    CreditDataProvider,
   ]
 })
 export class AppModule {}
