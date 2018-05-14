@@ -1,0 +1,15 @@
+.cell-header {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #991821), color-stop(1, #80141C) );
+	background: -moz-linear-gradient( center top, #991821 5%, #80141C 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');
+	background-color: #991821;
+	color: #FFFFFF;
+	font-size: 15px;
+	font-weight: bold;
+    border-left: 0px solid #B01C26;
+    border-collapse: collapse;
+}
+
+.grilla{
+    border-radius: 10px;
+}
