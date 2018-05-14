@@ -12,7 +12,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 import { MyApp } from './app.component';
-import { CreditProvider } from '../providers/credit/credit';
 import { firebaseConfig } from '../enviroments/enviroment';
 import { AboutPage } from '../pages/about/about';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -43,7 +42,6 @@ import { CreditDataProvider } from '../providers/credit-data/credit-data';
     AngularFireDatabase,
     AuthServiceProvider,
     BarcodeScanner,
-    CreditProvider,
     BrowserTab,
     CreditDataProvider,
   ]
