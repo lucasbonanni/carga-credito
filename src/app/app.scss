@@ -21,6 +21,14 @@
   src: url('../assets/fonts/DenkOne-Regular.ttf');
 }
 
+.action-sheet-md {
+  
+  .action-sheet-group:last-child {
+    // border-radius: 30px;
+    overflow:hidden;
+    background-color: rgba(158, 249, 255, 0.90);
+  }
+}
 
 
 .toolbar-background-md{
