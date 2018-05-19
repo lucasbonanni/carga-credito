@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, Loading, AlertController, LoadingController, ActionSheetController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { usuarios } from '../../models/users';
+import { BusyLoaderProvider } from '../../providers/busy-loader/busy-loader';
 
 /**
  * Generated class for the LoginPage page.
@@ -25,7 +26,8 @@ export class LoginPage {
     private auth: AuthServiceProvider, 
     private alertCtrl: AlertController, 
     private loadingCtrl: LoadingController,
-    private actionSheetCtrl: ActionSheetController) {
+    private actionSheetCtrl: ActionSheetController,
+    private busyLoader: BusyLoaderProvider) {
   }
 
   ionViewDidLoad() {
@@ -37,13 +39,14 @@ export class LoginPage {
   }
 
   public login() {
-    this.showLoading()
+    this.busyLoader.showBusyLoader();
     this.auth.signInWithEmail(this.registerCredentials).then(allowed => {
       console.log(allowed);
+      this.busyLoader.dismissBusyLoader();
         this.nav.setRoot('HomePage');
     }).catch(error=>{
       alert(error);
-      this.loading.dismiss();
+      this.busyLoader.dismissBusyLoader();
     });
   }
 
