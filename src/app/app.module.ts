@@ -16,6 +16,7 @@ import { firebaseConfig } from '../enviroments/enviroment';
 import { AboutPage } from '../pages/about/about';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CreditDataProvider } from '../providers/credit-data/credit-data';
+import { BusyLoaderProvider } from '../providers/busy-loader/busy-loader';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CreditDataProvider } from '../providers/credit-data/credit-data';
     BarcodeScanner,
     BrowserTab,
     CreditDataProvider,
+    BusyLoaderProvider,
   ]
 })
 export class AppModule {}
