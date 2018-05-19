@@ -70,7 +70,9 @@ export class HomePage implements OnInit {
         this.creditService.addCredit(credit);
       }
       else if (!exist) {
-        this.showMessage('El codigo no es un codigo válido');
+        this.showMessage('El código no es válido');
+      }else if(isNew){
+        this.showMessage('El código ya fué cargado');
       }
     }).catch(error => {
       this.showMessage('Ocurrión un error: '+ error);
@@ -85,7 +87,7 @@ export class HomePage implements OnInit {
     let toast = this.toastCtrl.create({
       message: text,
       duration: 3000,
-      position: 'top'
+      position: 'middle'
     });
     toast.present();
   }

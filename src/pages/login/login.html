@@ -11,7 +11,7 @@
         <h1>Bienvenido!</h1>
         <form (ngSubmit)="login()" #loginForm="ngForm">
           <div class="field-wrap">
-            <input type="email" id="email" placeholder="correo electronico" name="email" [(ngModel)]="registerCredentials.email" email required/>
+            <input type="email" id="email" placeholder="Correo electrónico" name="email" [(ngModel)]="registerCredentials.email" email required/>
           </div>
           <div class="field-wrap">
             <input type="password" id="password" placeholder="Contraseña" name="password" [(ngModel)]="registerCredentials.password"
