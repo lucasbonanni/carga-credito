@@ -11,7 +11,7 @@
         <h1>Bienvenido!</h1>
         <form (ngSubmit)="login()" #loginForm="ngForm">
           <div class="field-wrap">
-            <input type="email" id="email" placeholder="E-mail" name="email" [(ngModel)]="registerCredentials.email" email required/>
+            <input type="email" id="email" placeholder="correo electronico" name="email" [(ngModel)]="registerCredentials.email" email required/>
           </div>
           <div class="field-wrap">
             <input type="password" id="password" placeholder="Contraseña" name="password" [(ngModel)]="registerCredentials.password"
@@ -20,7 +20,7 @@
           <p class="forgot">
             <a href="#">¿olvidó su contraseña?</a>
           </p>
-          <button ion-button full large class="button button-block" type="submit" [disabled]="!loginForm.form.valid">Log In</button>
+          <button ion-button full large class="button button-block" type="submit" [disabled]="!loginForm.form.valid">Inciar session</button>
         </form>
         <button ion-button full large (click)="createAccount()">registrarse!</button>
         <ion-row>
