@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Loading, AlertController, LoadingController, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, Loading, AlertController, LoadingController, ActionSheetController, ToastController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { usuarios } from '../../models/users';
 import { BusyLoaderProvider } from '../../providers/busy-loader/busy-loader';
@@ -25,6 +25,7 @@ export class LoginPage {
     private nav: NavController, 
     private auth: AuthServiceProvider, 
     private alertCtrl: AlertController, 
+    private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private actionSheetCtrl: ActionSheetController,
     private busyLoader: BusyLoaderProvider) {
@@ -50,30 +51,12 @@ export class LoginPage {
     });
   }
 
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Por favor espere...',
-      dismissOnPageChange: true
-    });
-    this.loading.present();
-  }
-
-  showError(text) {
-    this.loading.dismiss();
- 
-    let alert = this.alertCtrl.create({
-      title: 'Se produjo un error',
-      subTitle: text,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 
   loginWithGithub(){
     this.auth.signInWithGithub().then(() =>{
       this.nav.setRoot('HomePage');
     }).catch(error =>{
-      alert(error);
+      this.showMessage(error);
     });;
   }
 
@@ -81,7 +64,7 @@ export class LoginPage {
     this.auth.signInWithGoogle().then(() =>{
       this.nav.setRoot('HomePage');
     }).catch(error =>{
-      alert(error);
+      this.showMessage(error);
     });
   }
 
@@ -141,5 +124,13 @@ export class LoginPage {
       ]
     });
     actionSheet.present();
+  }
+
+  showMessage(text:string) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'middle'
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, IonicPage, AlertController, Alert } from 'ionic-angular';
+import { NavController, IonicPage, AlertController, Alert, ToastController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { User } from 'firebase';
 import { CreditModel, AMOUNTS } from '../../models/credit-model';
@@ -23,6 +23,7 @@ export class HomePage implements OnInit {
   constructor(
     private nav: NavController,
     private auth: AuthServiceProvider,
+    private toastCtrl: ToastController,
     private creditService: CreditDataProvider,
     private barcodeScanner: BarcodeScanner,
     private alertCtrl: AlertController) {
@@ -41,7 +42,7 @@ export class HomePage implements OnInit {
           }
           console.log(this.totalAmount);
         },
-        error => console.log(error),
+        error => this.showMessage(error),
         () => {
 
         }
@@ -56,7 +57,7 @@ export class HomePage implements OnInit {
   }
 
   public chargeCredit() {
-    let alert :Alert;
+    // let alert :Alert;
     this.barcodeScanner.scan().then(result => {
       const exist = AMOUNTS.filter(value => value.code.toLowerCase() === result.text.trim().toLowerCase()).length > 0;
       const isNew = this.credit.filter(value => value.creditCode === result.text.trim().toLowerCase()).length === 0;
@@ -70,31 +71,23 @@ export class HomePage implements OnInit {
         this.creditService.addCredit(credit);
       }
       else if (!exist) {
-        alert = this.alertCtrl.create({
-          title: 'Advertencia!',
-          subTitle: 'El codigo no es un codigo válido',
-          buttons: [
-            {
-              text: 'Aceptar',
-              role: 'cancel'
-            }]
-        });
+        this.showMessage('El codigo no es un codigo válido');
       }
     }).catch(error => {
-      alert = this.alertCtrl.create({
-        title: 'Advertencia!',
-        subTitle: error,
-        buttons: [
-          {
-            text: 'Aceptar',
-            role: 'cancel'
-          }]
-      });
+      this.showMessage('Ocurrión un error: '+ error);
     });
   }
 
   public accountStatus() {
     this.nav.push('CuentaPage');
+  }
+
+  showMessage(text:string) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
   }
 
 }
