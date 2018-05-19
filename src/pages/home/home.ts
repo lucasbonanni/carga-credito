@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, IonicPage, AlertController, Alert, ToastController } from 'ionic-angular';
+import { NavController, IonicPage, ToastController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { User } from 'firebase';
 import { CreditModel, AMOUNTS } from '../../models/credit-model';
