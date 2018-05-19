@@ -25,8 +25,7 @@ export class HomePage implements OnInit {
     private auth: AuthServiceProvider,
     private toastCtrl: ToastController,
     private creditService: CreditDataProvider,
-    private barcodeScanner: BarcodeScanner,
-    private alertCtrl: AlertController) {
+    private barcodeScanner: BarcodeScanner) {
   }
 
   ngOnInit(): void {
