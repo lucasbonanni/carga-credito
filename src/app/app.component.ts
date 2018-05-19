@@ -3,6 +3,7 @@ import { Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { BusyLoaderProvider } from '../providers/busy-loader/busy-loader';
 
 
 @Component({
@@ -10,33 +11,38 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 })
 export class MyApp {
   splash: boolean = true;
-  rootPage:any = 'LoginPage';
+  rootPage: any = 'LoginPage';
 
   constructor(
-    platform: Platform, 
-    statusBar: StatusBar, 
+    platform: Platform,
+    statusBar: StatusBar,
     splashScreen: SplashScreen,
     modalCtrl: ModalController,
-    private auth: AuthServiceProvider) {
+    private auth: AuthServiceProvider,
+    private busyLoader: BusyLoaderProvider) {
+    this.busyLoader.showBusyLoader();
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      setTimeout(() => this.splash = false, 4000);
+      setTimeout(() => {
+        this.splash = false
+        this.busyLoader.dismissBusyLoader();
+      }, 3000);
     });
     this.auth.afAuth.authState
-    .subscribe(
-      user => {
-        if (user) {
-          this.rootPage = 'HomePage';
-        } else {
+      .subscribe(
+        user => {
+          if (user) {
+            this.rootPage = 'HomePage';
+          } else {
+            this.rootPage = 'LoginPage';
+          }
+        },
+        () => {
           this.rootPage = 'LoginPage';
         }
-      },
-      () => {
-        this.rootPage = 'LoginPage';
-      }
-    );
+      );
   }
 }
