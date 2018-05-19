@@ -87,6 +87,7 @@ export class HomePage implements OnInit {
       duration: 3000,
       position: 'top'
     });
+    toast.present();
   }
 
 }

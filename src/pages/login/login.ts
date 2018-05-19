@@ -44,7 +44,7 @@ export class LoginPage {
       this.busyLoader.dismissBusyLoader();
         this.nav.setRoot('HomePage');
     }).catch(error=>{
-      alert(error);
+      this.showMessage('Error en las credenciales');
       this.busyLoader.dismissBusyLoader();
     });
   }
@@ -130,5 +130,6 @@ export class LoginPage {
       duration: 3000,
       position: 'middle'
     });
+    toast.present();
   }
 }

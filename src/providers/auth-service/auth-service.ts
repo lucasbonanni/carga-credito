@@ -75,7 +75,7 @@ export class AuthServiceProvider {
             console.log(token, user);
           }).catch(function (error) {
             // Handle Errors here.
-            this.showMessage('Verifique sus credenciales');
+            this.showMessage(error);
           });
         });
     }
@@ -87,6 +87,7 @@ export class AuthServiceProvider {
       duration: 3000,
       position: 'top'
     });
+    toast.present();
   }
 
   public getUserInfo(): User {
