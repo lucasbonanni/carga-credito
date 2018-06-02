@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
         transactions => {
           console.log(transactions);
           this.credit = transactions.filter(value => value.displayName === this.displayName);
+          this.totalAmount = 0;
           for (let index = 0; index < this.credit.length; index++) {
             this.totalAmount += this.credit[index].amount;
           }
@@ -71,7 +72,7 @@ export class HomePage implements OnInit {
       }
       else if (!exist) {
         this.showMessage('El código no es válido');
-      }else if(isNew){
+      }else if(!isNew){
         this.showMessage('El código ya fué cargado');
       }
     }).catch(error => {
